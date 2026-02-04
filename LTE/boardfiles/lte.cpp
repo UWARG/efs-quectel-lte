@@ -3,6 +3,8 @@
 LTE::LTE(UART_HandleTypeDef* huart):
 	huart(huart){}
 
+LTE::~LTE() = default;
+
 void LTE::transmit(const uint8_t* data, uint16_t size)
 {
 	HAL_UART_Transmit(huart, data, size, 100);
