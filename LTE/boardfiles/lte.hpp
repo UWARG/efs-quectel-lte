@@ -1,7 +1,7 @@
 #pragma once
 
 #include "stm32l5xx_hal.h"
-#include "stm32l5xx_uart_hal.h"
+//#include "stm32l5xx_uart_hal.h"
 #include <cstdint>
 
 #define BUFFER_SIZE 8096
