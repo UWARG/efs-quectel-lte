@@ -1,6 +1,12 @@
-../Core/Src/main.cpp:69:5:int main()	8232	static
-../Core/Src/main.cpp:123:6:void SystemClock_Config()	104	static
-../Core/Src/main.cpp:168:13:void MX_ICACHE_Init()	8	static
-../Core/Src/main.cpp:196:13:void MX_UART4_Init()	8	static
-../Core/Src/main.cpp:244:13:void MX_GPIO_Init()	16	static
-../Core/Src/main.cpp:266:6:void Error_Handler()	4	static,ignoring_inline_asm
+../Core/Src/main.cpp:71:5:int main()	120	static
+../Core/Src/main.cpp:129:6:void SystemClock_Config()	104	static
+../Core/Src/main.cpp:174:13:void MX_ICACHE_Init()	8	static
+../Core/Src/main.cpp:202:13:void MX_UART4_Init()	8	static
+../Core/Src/main.cpp:248:13:void MX_DMA_Init()	16	static
+../Core/Src/main.cpp:270:13:void MX_GPIO_Init()	16	static
+../Core/Src/main.cpp:285:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	16	static
+../Core/Src/main.cpp:298:6:void Error_Handler()	4	static,ignoring_inline_asm
+../Core/Src/main.cpp:307:1:void __static_initialization_and_destruction_0()	8	static
+../Core/Src/main.cpp:307:1:void __static_initialization_and_destruction_1()	8	static
+../Core/Src/main.cpp:307:1:cpp)	8	static
+../Core/Src/main.cpp:307:1:cpp)	8	static

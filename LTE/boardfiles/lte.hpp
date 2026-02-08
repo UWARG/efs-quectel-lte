@@ -2,9 +2,10 @@
 
 #include "stm32l5xx_hal.h"
 //#include "stm32l5xx_uart_hal.h"
+
 #include <cstdint>
 
-#define BUFFER_SIZE 8096
+#define BUFFER_SIZE 255
 
 class LTE {
 
@@ -18,6 +19,7 @@ public:
 
     // Getters
     UART_HandleTypeDef* getHuart() const;
+    bool getNewData();
 
     // DMA callback
     void receiveCallback(uint16_t size);
@@ -27,6 +29,8 @@ public:
 
     //state machine action????
     void update();
+
+    void setNewData();
 
 private:
     UART_HandleTypeDef* huart;

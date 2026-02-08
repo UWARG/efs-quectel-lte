@@ -7,12 +7,58 @@ LTE::~LTE() = default;
 
 void LTE::transmit(const uint8_t* data, uint16_t size)
 {
-	HAL_UART_Transmit(huart, data, size, 100);
+	if(huart)
+	{
+		HAL_UART_Transmit_DMA(huart, data, size);
+	}
+}
+
+void LTE::startReceive()
+{
+	if(huart)
+	{
+		HAL_UARTEx_ReceiveToIdle_DMA(huart, rxBuffer, BUFFER_SIZE);
+	}
 }
 
 uint16_t LTE::receive(uint8_t* buffer, uint16_t bufferSize)
 {
-	HAL_UART_Receive(huart, buffer, bufferSize, 100);
+	for (int i = 0; i < bufferSize; i++)
+	{
+		if(readIndex == writeIndex)
+		{
+			return i;
+		}
+		buffer[i] = rxBuffer[readIndex];
+		readIndex++;
+		if (readIndex >= BUFFER_SIZE)
+		{
+			writeIndex = 0;
+		}
+	}
+	newData = false;
+	return bufferSize;
+}
+
+void LTE::setNewData()
+{
+	newData = true;
+}
+
+
+void LTE::receiveCallback(uint16_t size)
+{
+	writeIndex = size;
+}
+
+UART_HandleTypeDef* LTE::getHuart() const
+{
+	return huart;
+}
+
+bool LTE::getNewData()
+{
+	return newData;
 }
 
 void sendATCommand(const char* command, const char* arguments) {
