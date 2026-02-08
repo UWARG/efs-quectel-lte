@@ -35,8 +35,9 @@ private:
     uint16_t writeIndex;
     bool newData; //ISR Fodder
 
-    enum state {
+    enum State {
         POWER_ON,
+        POWER_ON_WAIT,
         POWER_OFF,
         SIM_CARD,
         WAIT_SIM_CARD,
@@ -44,6 +45,8 @@ private:
         WAIT_DNS,
         READY
     };
+
+    State currentState;
 
 
 };
