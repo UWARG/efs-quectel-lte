@@ -3,7 +3,7 @@
 ../boardfiles/lte.cpp:8:6:void LTE::transmit(const uint8_t*, uint16_t)	2
 ../boardfiles/lte.cpp:16:6:void LTE::startReceive()	2
 ../boardfiles/lte.cpp:24:10:uint16_t LTE::receive(uint8_t*, uint16_t)	4
-../boardfiles/lte.cpp:43:6:void LTE::setNewData()	1
-../boardfiles/lte.cpp:49:6:void LTE::receiveCallback(uint16_t)	1
-../boardfiles/lte.cpp:54:21:UART_HandleTypeDef* LTE::getHuart() const	1
-../boardfiles/lte.cpp:59:6:bool LTE::getNewData()	1
+../boardfiles/lte.cpp:44:6:void LTE::setNewData()	1
+../boardfiles/lte.cpp:50:6:void LTE::receiveCallback(uint16_t)	1
+../boardfiles/lte.cpp:55:21:UART_HandleTypeDef* LTE::getHuart() const	1
+../boardfiles/lte.cpp:60:6:bool LTE::getNewData()	1

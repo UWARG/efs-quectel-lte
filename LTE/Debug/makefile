@@ -85,8 +85,8 @@ all: main-build
 main-build: Quectel-LTE.elf secondary-outputs
 
 # Tool invocations
-Quectel-LTE.elf Quectel-LTE.map: $(OBJS) $(USER_OBJS) /Users/krisko/Documents/efs-quectel-lte/LTE/STM32L552ZETXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Quectel-LTE.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/krisko/Documents/efs-quectel-lte/LTE/STM32L552ZETXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="Quectel-LTE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Quectel-LTE.elf Quectel-LTE.map: $(OBJS) $(USER_OBJS) /Users/mohamed/Desktop/WARG-repos/efs-quectel-lte/LTE/STM32L552ZETXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Quectel-LTE.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/mohamed/Desktop/WARG-repos/efs-quectel-lte/LTE/STM32L552ZETXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="Quectel-LTE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
