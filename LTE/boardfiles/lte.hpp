@@ -5,7 +5,10 @@
 
 #include <cstdint>
 
-#define BUFFER_SIZE 255
+#define BUFFER_SIZE 	255
+//#define POWER_ON_WAIT	20000
+//#define SIM_WAIT		20000
+
 
 class LTE {
 
@@ -29,6 +32,7 @@ public:
 
     //state machine action????
     void update();
+    void stopUpdate();
 
     void setNewData();
 
@@ -45,6 +49,12 @@ private:
         POWER_OFF,
         SIM_CARD,
         WAIT_SIM_CARD,
+		CS,
+		WAIT_CS,
+		PS,
+		WAIT_PS,
+		PDP,
+		WAIT_PDP,
         DNS,
         WAIT_DNS,
         READY
