@@ -5,7 +5,7 @@
 
 #include <cstdint>
 
-#define BUFFER_SIZE 	255
+#define BUFFER_SIZE 	4000
 //#define POWER_ON_WAIT	20000
 //#define SIM_WAIT		20000
 

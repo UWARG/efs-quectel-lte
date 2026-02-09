@@ -62,6 +62,8 @@ static void MX_UART4_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 LTE lte(&huart4);
+
+uint16_t old_pos = 0;
 /* USER CODE END 0 */
 
 /**
@@ -98,12 +100,17 @@ int main(void)
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
-  char data[] = "ATI\r";
-  lte.transmit((uint8_t*)data, 4);
-
+//  char data[] = "ATE0\r";
+//  lte.transmit((uint8_t*)data, 5);
   char b_receive[100];
   uint8_t receive_size = 100;
   lte.startReceive();
+
+  char data1[] = "ATI\r";
+  lte.transmit((uint8_t*)data1, 4);
+  lte.startReceive();
+
+
 
   /* USER CODE END 2 */
 
@@ -284,9 +291,14 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
-	//update size of received
-	lte.receiveCallback(Size);
-	lte.setNewData();
+	if(old_pos < Size)
+	{
+		lte.receiveCallback(Size - old_pos);
+	}
+	else
+	{
+		lte.setNewData();
+	}
 }
 
 /* USER CODE END 4 */
