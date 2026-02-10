@@ -39,9 +39,9 @@ public:
 private:
     UART_HandleTypeDef* huart;
     uint8_t rxBuffer[BUFFER_SIZE];
-    uint16_t readIndex;
-    uint16_t writeIndex;
-    bool newData; //ISR Fodder
+    volatile uint16_t readIndex;
+    volatile uint16_t writeIndex;
+    volatile bool newData; //ISR Fodder
 
     enum State {
         POWER_ON,

@@ -103,12 +103,10 @@ int main(void)
 //  char data[] = "ATE0\r";
 //  lte.transmit((uint8_t*)data, 5);
   char b_receive[100];
-  uint8_t receive_size = 100;
   lte.startReceive();
 
   char data1[] = "ATI\r";
   lte.transmit((uint8_t*)data1, 4);
-  lte.startReceive();
 
 
 
