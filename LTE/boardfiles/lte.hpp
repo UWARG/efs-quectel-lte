@@ -18,14 +18,14 @@ public:
     ~LTE();
 
     void transmit(const uint8_t* data, uint16_t size);
-    uint16_t receive(uint8_t* buffer, uint16_t bufferSize);
+    void receive(uint8_t* buffer);
 
     // Getters
     UART_HandleTypeDef* getHuart() const;
     bool getNewData();
 
     // DMA callback
-    void receiveCallback(uint16_t size);
+    void receiveCallback(uint16_t write_index);
 
     // Start DMA
     void startReceive();

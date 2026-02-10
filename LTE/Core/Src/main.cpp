@@ -123,7 +123,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  if(lte.getNewData())
 	  {
-		  lte.receive((uint8_t*)b_receive, receive_size);
+		  lte.receive((uint8_t*)b_receive);
 	  }
   }
   /* USER CODE END 3 */
@@ -291,14 +291,8 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
-	if(old_pos < Size)
-	{
-		lte.receiveCallback(Size - old_pos);
-	}
-	else
-	{
-		lte.setNewData();
-	}
+	lte.receiveCallback(Size);
+	lte.setNewData();
 }
 
 /* USER CODE END 4 */

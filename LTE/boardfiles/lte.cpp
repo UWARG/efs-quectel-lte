@@ -1,4 +1,5 @@
 #include "lte.hpp"
+#include <cstring>
 
 LTE::LTE(UART_HandleTypeDef* huart):
 	huart(huart){}
@@ -22,24 +23,34 @@ void LTE::startReceive()
 	}
 }
 
-uint16_t LTE::receive(uint8_t* buffer, uint16_t bufferSize)
+void LTE::receive(uint8_t* buffer)
 {
-	for (int i = 0; i < bufferSize; i++)
+	if(readIndex <= writeIndex)
 	{
-		if(readIndex == writeIndex)
-		{
-			newData = false;
-			return i;
-		}
-		buffer[i] = rxBuffer[readIndex];
-		readIndex++;
-		if (readIndex >= BUFFER_SIZE)
-		{
-			readIndex = 0;
-		}
+		memcpy(buffer, rxBuffer + readIndex, writeIndex - readIndex);
 	}
-	newData = false;
-	return bufferSize;
+	else
+	{
+		memcpy(buffer, rxBuffer + readIndex, BUFFER_SIZE - readIndex);
+		memcpy(buffer, rxBuffer, readIndex - writeIndex);
+	}
+	readIndex = writeIndex;
+//	for (int i = 0; i < bufferSize; i++)
+//	{
+//		if(readIndex == writeIndex)
+//		{
+//			newData = false;
+//			return i;
+//		}
+//		buffer[i] = rxBuffer[readIndex];
+//		readIndex++;
+//		if (readIndex >= BUFFER_SIZE)
+//		{
+//			readIndex = 0;
+//		}
+//	}
+//	newData = false;
+//	return bufferSize;
 }
 
 void LTE::setNewData()
@@ -48,9 +59,9 @@ void LTE::setNewData()
 }
 
 
-void LTE::receiveCallback(uint16_t size)
+void LTE::receiveCallback(uint16_t write_index)
 {
-	writeIndex = size;
+	writeIndex = write_index % BUFFER_SIZE;
 }
 
 UART_HandleTypeDef* LTE::getHuart() const
