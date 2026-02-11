@@ -75,79 +75,93 @@ bool LTE::getNewData()
 {
 	return newData;
 }
-//
-//void LTE::update() {
-//	uint32_t wait_start;
-//
-//	switch(currentState){
-//		case POWER_ON:
-//			char tx_buffer[128] = "ATI";
-//			transmit((uint8_t*)tx_buffer, strlen((uint8_t*)tx_buffer));
-//			wait_start = HAL_GetTick();
-//			currentState = POWER_ON_WAIT;
-//			break;
-//		case POWER_ON_WAIT:
-//			if (newData)
-//			{
-//				nextState = SIM_CARD;
-//			}
-//			if (HAL_GetTick() - wait_start > POWER_ON_WAIT)
-//			{
-//				currentState = POWER_ON;
-//			}
-//       case SIM_CARD:
-//       	tx_buffer = "AT+CPIN?";
-//			transmit((uint8_t*)tx_buffer, strlen((uint8_t*)tx_buffer));
-//			wait_start = HAL_GetTick();
-//			currentState = POWER_ON_WAIT;
-//			break;
-//       case WAIT_SIM_CARD:
-//       	if (newData)
-//			{
-//				nextState = DNS;
-//			}
-//			if (HAL_GetTick() - wait_start > POWER_ON_WAIT)
-//			{
-//				currentState = POWER_ON;
-//			}
-//			break;
-//       case CS:
-//       	tx_buffer = "AT+CREG?";
-//			transmit((uint8_t*)tx_buffer, strlen((uint8_t*)tx_buffer));
-//			wait_start = HAL_GetTick();
-//			currentState = POWER_ON_WAIT;
-//			break;
-//		case WAIT_CS:
-//			if (newData)
-//			{
-//				nextState = DNS;
-//			}
-//			if (HAL_GetTick() - wait_start > POWER_ON_WAIT)
-//			{
-//				currentState = POWER_ON;
-//			}
-//			break;
-//		case PS:
-//			break;
-//		case WAIT_PS:
-//			break;
-//		case PDP:
-//			break;
-//		case WAIT_PS:
-//			break;
-//       case DNS:
-//			break;
-//       case WAIT_DNS:
-//			break;
-//       case READY:
-//			break;
-//		default:
-//			break;
-//	}
-//}
-//
-//void LTE::stopUpdate()
-//{
-//	char tx_buffer[128] = "AT+QPOWD";
-//	transmit((uint8_t*)tx_buffer, strlen((uint8_t*)tx_buffer));
-//}
+
+void LTE::update() {
+	uint32_t wait_start = 0;
+
+	switch(currentState){
+		case POWER_ON:{
+			char tx_buffer[128] = "ATI\r";
+			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+			wait_start = HAL_GetTick();
+			currentState = POWER_ON_WAIT;
+			break;
+		}
+		case POWER_ON_WAIT:{
+			if (newData)
+			{
+				currentState = SIM_CARD;
+			}
+			if (HAL_GetTick() - wait_start > POWER_ON_WAIT_TIME)
+			{
+				currentState = POWER_ON;
+			}
+			break;
+		}
+       case SIM_CARD:{
+    	   	char tx_buffer[128] = "AT+CPIN?";
+			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+			wait_start = HAL_GetTick();
+			currentState = POWER_ON_WAIT;
+			break;
+       }
+       case WAIT_SIM_CARD:{
+       	if (newData)
+			{
+       			currentState = DNS;
+			}
+			if (HAL_GetTick() - wait_start > SIM_WAIT_TIME)
+			{
+				currentState = POWER_ON;
+			}
+			break;
+       }
+       case CS:{
+    	   	char tx_buffer[128] = "AT+CREG?";
+			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+			wait_start = HAL_GetTick();
+			currentState = POWER_ON_WAIT;
+			break;
+       }
+       case WAIT_CS:{
+			if (newData)
+			{
+				currentState = DNS;
+			}
+			if (HAL_GetTick() - wait_start > POWER_ON_WAIT)
+			{
+				currentState = POWER_ON;
+			}
+			break;
+       }
+		case PS:{
+			break;
+		}
+		case WAIT_PS:{
+			break;
+		}
+		case PDP:{
+			break;
+		}
+		case WAIT_PDP:{
+			break;
+		}
+       	case DNS:{
+			break;
+		}
+       	case WAIT_DNS:{
+			break;
+		}
+       	case READY:{
+			break;
+		}
+		default:
+			break;
+	}
+}
+
+void LTE::stopUpdate()
+{
+	char tx_buffer[128] = "AT+QPOWD";
+	transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+}

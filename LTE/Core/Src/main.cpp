@@ -102,13 +102,18 @@ int main(void)
 
 //  char data[] = "ATE0\r";
 //  lte.transmit((uint8_t*)data, 5);
-  char b_receive[100];
+
+
+  char b_receive[100] = {0};
   lte.startReceive();
 
   char data1[] = "ATI\r";
   lte.transmit((uint8_t*)data1, 4);
 
-
+  //without dma for testing
+//  HAL_UART_Transmit(&huart4, (uint8_t*)data1, 4, 1000);
+//  char polling_receive[100] = {0};
+//  HAL_UART_Receive(&huart4, polling_receive, 100, 1000);
 
   /* USER CODE END 2 */
 

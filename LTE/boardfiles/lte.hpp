@@ -6,8 +6,8 @@
 #include <cstdint>
 
 #define BUFFER_SIZE 	4000
-//#define POWER_ON_WAIT	20000
-//#define SIM_WAIT		20000
+#define POWER_ON_WAIT_TIME	20000
+#define SIM_WAIT_TIME		20000
 
 
 class LTE {
