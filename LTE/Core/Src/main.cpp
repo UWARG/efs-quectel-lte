@@ -63,7 +63,6 @@ static void MX_UART4_Init(void);
 /* USER CODE BEGIN 0 */
 LTE lte(&huart4);
 
-uint16_t old_pos = 0;
 /* USER CODE END 0 */
 
 /**
@@ -100,20 +99,23 @@ int main(void)
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
-//  char data[] = "ATE0\r";
-//  lte.transmit((uint8_t*)data, 5);
+
+//
 
 
   char b_receive[100] = {0};
   lte.startReceive();
 
-  char data1[] = "ATI\r";
-  lte.transmit((uint8_t*)data1, 4);
+  char data[] = "ATE0\r";
+  lte.transmit((uint8_t*)data, 5);
 
-  //without dma for testing
-//  HAL_UART_Transmit(&huart4, (uint8_t*)data1, 4, 1000);
-//  char polling_receive[100] = {0};
-//  HAL_UART_Receive(&huart4, polling_receive, 100, 1000);
+
+  /*
+   * without dma for testing
+   */
+//  HAL_UART_Transmit(&huart4, (uint8_t*)data1, 4, 100);
+//  char polling_receive[100];
+//  HAL_UART_Receive(&huart4, (uint8_t*)polling_receive, 100, 100);
 
   /* USER CODE END 2 */
 
@@ -127,6 +129,8 @@ int main(void)
 	  if(lte.getNewData())
 	  {
 		  lte.receive((uint8_t*)b_receive);
+		  char data1[] = "ATI\r";
+		  lte.transmit((uint8_t*)data1, 4);
 	  }
   }
   /* USER CODE END 3 */
