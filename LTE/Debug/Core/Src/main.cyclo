@@ -1,12 +1,12 @@
 ../Core/Src/main.cpp:72:5:int main()	2
-../Core/Src/main.cpp:143:6:void SystemClock_Config()	4
-../Core/Src/main.cpp:188:13:void MX_ICACHE_Init()	2
-../Core/Src/main.cpp:216:13:void MX_UART4_Init()	5
-../Core/Src/main.cpp:262:13:void MX_DMA_Init()	1
-../Core/Src/main.cpp:284:13:void MX_GPIO_Init()	1
-../Core/Src/main.cpp:299:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	1
-../Core/Src/main.cpp:311:6:void Error_Handler()	1
-../Core/Src/main.cpp:320:1:void __static_initialization_and_destruction_0()	1
-../Core/Src/main.cpp:320:1:void __static_initialization_and_destruction_1()	1
-../Core/Src/main.cpp:320:1:cpp)	1
-../Core/Src/main.cpp:320:1:cpp)	1
+../Core/Src/main.cpp:140:6:void SystemClock_Config()	4
+../Core/Src/main.cpp:185:13:void MX_ICACHE_Init()	2
+../Core/Src/main.cpp:213:13:void MX_UART4_Init()	5
+../Core/Src/main.cpp:259:13:void MX_DMA_Init()	1
+../Core/Src/main.cpp:281:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:296:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	1
+../Core/Src/main.cpp:308:6:void Error_Handler()	1
+../Core/Src/main.cpp:317:1:void __static_initialization_and_destruction_0()	1
+../Core/Src/main.cpp:317:1:void __static_initialization_and_destruction_1()	1
+../Core/Src/main.cpp:317:1:cpp)	1
+../Core/Src/main.cpp:317:1:cpp)	1

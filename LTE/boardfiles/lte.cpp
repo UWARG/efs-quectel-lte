@@ -76,8 +76,28 @@ bool LTE::getNewData()
 	return newData;
 }
 
+char LTE::parse(char* at_response, uint8_t param_n)
+{
+	for(uint8_t i = 0; i < strlen(at_response); i++)
+	{
+		if( (at_response[i] == ',') | (at_response[i] == ':') ){
+			param_n--;
+			if(param_n == 0){
+				if(at_response[i] == ':'){
+					return at_response[i+2];
+				}
+				else
+				{
+					return at_response[i+1]; //assuming parameter is just one character
+				}
+			}
+		}
+	}
+}
+
 void LTE::update() {
-	uint32_t wait_start = 0;
+	static uint32_t wait_start = 0;
+	static char b_receive[100] = {0};
 
 	switch(currentState){
 		case POWER_ON:{
@@ -98,49 +118,79 @@ void LTE::update() {
 			}
 			break;
 		}
-       case SIM_CARD:{
-    	   	char tx_buffer[128] = "AT+CPIN?";
+		case SIM_CARD:{
+    	   	char tx_buffer[128] = "AT+CPIN?\r";
 			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
 			wait_start = HAL_GetTick();
 			currentState = POWER_ON_WAIT;
 			break;
-       }
-       case WAIT_SIM_CARD:{
-       	if (newData)
+		}
+		case WAIT_SIM_CARD:{
+    	   	if (newData)
 			{
-       			currentState = DNS;
+       			receive((uint8_t*)b_receive);
+       			if(strcmp(b_receive, "+CPIN: READY\r") == 0){
+       				currentState = DNS;
+       			}
+       			else
+       			{
+       				//if has password
+       				char tx_buffer[128] = "AT+CPIN=\r"; //password
+					transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+					wait_start = HAL_GetTick();
+       			}
 			}
 			if (HAL_GetTick() - wait_start > SIM_WAIT_TIME)
 			{
 				currentState = POWER_ON;
 			}
 			break;
-       }
-       case CS:{
-    	   	char tx_buffer[128] = "AT+CREG?";
+		}
+		case CS:{
+			char tx_buffer[128] = "AT+CREG?\\r";
 			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
 			wait_start = HAL_GetTick();
 			currentState = POWER_ON_WAIT;
 			break;
-       }
-       case WAIT_CS:{
+		}
+		case WAIT_CS:{
 			if (newData)
 			{
-				currentState = DNS;
+				receive((uint8_t*)b_receive);
+				if( (parse(b_receive, 1) == 1) | (parse(b_receive, 1) == 5) )
+				{
+					currentState = PS;
+				}
 			}
-			if (HAL_GetTick() - wait_start > POWER_ON_WAIT)
+			if (HAL_GetTick() - wait_start > CS_WAIT_TIME)
 			{
 				currentState = POWER_ON;
 			}
 			break;
-       }
+		}
 		case PS:{
+			char tx_buffer[128] = "AT+CEREG?\r";
+			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+			wait_start = HAL_GetTick();
+			currentState = WAIT_PS;
 			break;
 		}
 		case WAIT_PS:{
+			if (newData)
+			{
+				receive((uint8_t*)b_receive);
+				if( (parse(b_receive, 1) == 1) | (parse(b_receive, 1) == 5) | (HAL_GetTick() - wait_start > CS_WAIT_TIME) )
+				{
+					currentState = PDP;
+				}
+			}
 			break;
 		}
 		case PDP:{
+			char tx_buffer[128] = "AT+QICSGP=<1>\r";
+			transmit((uint8_t*)tx_buffer, strlen(tx_buffer));
+			wait_start = HAL_GetTick();
+			currentState = WAIT_PS;
 			break;
 		}
 		case WAIT_PDP:{

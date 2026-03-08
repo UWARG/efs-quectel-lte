@@ -8,6 +8,8 @@
 #define BUFFER_SIZE 	4000
 #define POWER_ON_WAIT_TIME	20000
 #define SIM_WAIT_TIME		20000
+#define CS_WAIT_TIME		90000
+#define PS_WAIT_TIME		60000
 
 
 class LTE {
@@ -37,6 +39,8 @@ public:
     void setNewData();
 
 private:
+    char parse(char* at_response, uint8_t param_n);
+
     UART_HandleTypeDef* huart;
     uint8_t rxBuffer[BUFFER_SIZE];
     volatile uint16_t readIndex;

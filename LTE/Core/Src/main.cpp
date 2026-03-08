@@ -100,9 +100,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 
-//
-
-
   char b_receive[100] = {0};
   lte.startReceive();
 

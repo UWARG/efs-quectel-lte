@@ -7,5 +7,6 @@
 ../boardfiles/lte.cpp:64:6:void LTE::receiveCallback(uint16_t)	1
 ../boardfiles/lte.cpp:69:21:UART_HandleTypeDef* LTE::getHuart() const	1
 ../boardfiles/lte.cpp:74:6:bool LTE::getNewData()	1
-../boardfiles/lte.cpp:79:6:void LTE::update()	13
-../boardfiles/lte.cpp:163:6:void LTE::stopUpdate()	1
+../boardfiles/lte.cpp:79:6:char LTE::parse(char*, uint8_t)	4
+../boardfiles/lte.cpp:98:6:void LTE::update()	20
+../boardfiles/lte.cpp:213:6:void LTE::stopUpdate()	1
