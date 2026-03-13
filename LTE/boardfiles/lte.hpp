@@ -10,6 +10,22 @@
 #define SIM_WAIT_TIME		20000
 #define CS_WAIT_TIME		90000
 #define PS_WAIT_TIME		60000
+#define PDP_ACT_WAIT_TIME 		150000
+#define OPEN_CONNECT_WAIT_TIME	150000
+#define CLOSE_CONNECT_WAIT_TIME 10000
+#define DEACT_WAIT_TIME			40000
+
+#define CONTEXT_ID 		"1"
+#define CONNECT_ID		"0"
+#define SERVICE_TYPE	"UDP"
+#define IP_ADDR			""
+#define PORT			""
+#define ACCESS_MODE		"2"	//transparent access mode
+#define CONTEXT_TYPE	"1"
+#define APN				""	//need
+#define USERNAME		""	//prob dont need
+#define PASSWORD		""	//prob dont need
+#define AUTH			"0"
 
 
 class LTE {
@@ -57,10 +73,16 @@ private:
 		WAIT_CS,
 		PS,
 		WAIT_PS,
-		PDP,
-		WAIT_PDP,
-        DNS,
-        WAIT_DNS,
+		CONFIG_PDP,
+		WAIT_CONFIG_PDP,
+		ACT_PDP,
+		WAIT_ACT_PDP,
+		DEACT_PDP,
+		WAIT_DEACT_PDP,
+		OPEN_CONNECT,
+		WAIT_OPEN_CONNECT,
+		CLOSE_CONNECT,
+		WAIT_CLOSE_CONNECT,
         READY
     };
 

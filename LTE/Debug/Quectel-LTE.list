@@ -5,47 +5,47 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   000001f4  08000000  08000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         0000503c  080001f4  080001f4  000011f4  2**2
+  1 .text         00005074  080001f4  080001f4  000011f4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000088  08005230  08005230  00006230  2**2
+  2 .rodata       00000088  08005268  08005268  00006268  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  080052b8  080052b8  0000700c  2**0
+  3 .ARM.extab    00000000  080052f0  080052f0  0000700c  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000008  080052b8  080052b8  000062b8  2**2
+  4 .ARM          00000008  080052f0  080052f0  000062f0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  080052c0  080052c0  0000700c  2**0
+  5 .preinit_array 00000000  080052f8  080052f8  0000700c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000008  080052c0  080052c0  000062c0  2**2
+  6 .init_array   00000008  080052f8  080052f8  000062f8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000008  080052c8  080052c8  000062c8  2**2
+  7 .fini_array   00000008  08005300  08005300  00006300  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         0000000c  20000000  080052d0  00007000  2**2
+  8 .data         0000000c  20000000  08005308  00007000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00001130  2000000c  080052dc  0000700c  2**2
+  9 .bss          00001130  2000000c  08005314  0000700c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  2000113c  080052dc  0000713c  2**0
+ 10 ._user_heap_stack 00000604  2000113c  08005314  0000713c  2**0
                   ALLOC
  11 .ARM.attributes 00000036  00000000  00000000  0000700c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0001070e  00000000  00000000  00007042  2**0
+ 12 .debug_info   000106ae  00000000  00000000  00007042  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00002681  00000000  00000000  00017750  2**0
+ 13 .debug_abbrev 000026a0  00000000  00000000  000176f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000c68  00000000  00000000  00019dd8  2**3
+ 14 .debug_aranges 00000c68  00000000  00000000  00019d90  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000982  00000000  00000000  0001aa40  2**0
+ 15 .debug_rnglists 00000981  00000000  00000000  0001a9f8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0002a1c0  00000000  00000000  0001b3c2  2**0
+ 16 .debug_macro  0002a21a  00000000  00000000  0001b379  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000ee91  00000000  00000000  00045582  2**0
+ 17 .debug_line   0000f080  00000000  00000000  00045593  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    001004ca  00000000  00000000  00054413  2**0
+ 18 .debug_str    00100602  00000000  00000000  00054613  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  001548dd  2**0
+ 19 .comment      00000043  00000000  00000000  00154c15  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003284  00000000  00000000  00154920  2**2
+ 20 .debug_frame  00003284  00000000  00000000  00154c58  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005b  00000000  00000000  00157ba4  2**0
+ 21 .debug_line_str 0000005b  00000000  00000000  00157edc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -64,7 +64,7 @@ Disassembly of section .text:
  800020a:	bd10      	pop	{r4, pc}
  800020c:	2000000c 	.word	0x2000000c
  8000210:	00000000 	.word	0x00000000
- 8000214:	08005218 	.word	0x08005218
+ 8000214:	08005250 	.word	0x08005250
 
 08000218 <frame_dummy>:
  8000218:	b508      	push	{r3, lr}
@@ -76,7 +76,7 @@ Disassembly of section .text:
  8000226:	bd08      	pop	{r3, pc}
  8000228:	00000000 	.word	0x00000000
  800022c:	20000010 	.word	0x20000010
- 8000230:	08005218 	.word	0x08005218
+ 8000230:	08005250 	.word	0x08005250
 
 08000234 <__aeabi_uldivmod>:
  8000234:	b953      	cbnz	r3, 800024c <__aeabi_uldivmod+0x18>
@@ -441,7 +441,7 @@ int main(void)
  80005d2:	2264      	movs	r2, #100	@ 0x64
  80005d4:	2100      	movs	r1, #0
  80005d6:	4618      	mov	r0, r3
- 80005d8:	f004 fde3 	bl	80051a2 <memset>
+ 80005d8:	f004 fdff 	bl	80051da <memset>
   lte.startReceive();
  80005dc:	4814      	ldr	r0, [pc, #80]	@ (8000630 <main+0x80>)
  80005de:	f004 fd39 	bl	8005054 <_ZN3LTE12startReceiveEv>
@@ -466,7 +466,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  if(lte.getNewData())
  8000600:	480b      	ldr	r0, [pc, #44]	@ (8000630 <main+0x80>)
- 8000602:	f004 fdc0 	bl	8005186 <_ZN3LTE10getNewDataEv>
+ 8000602:	f004 fddc 	bl	80051be <_ZN3LTE10getNewDataEv>
  8000606:	4603      	mov	r3, r0
  8000608:	2b00      	cmp	r3, #0
  800060a:	d0f9      	beq.n	8000600 <main+0x50>
@@ -492,7 +492,7 @@ int main(void)
  800062c:	e7e8      	b.n	8000600 <main+0x50>
  800062e:	bf00      	nop
  8000630:	2000018c 	.word	0x2000018c
- 8000634:	08005230 	.word	0x08005230
+ 8000634:	08005268 	.word	0x08005268
  8000638:	0d495441 	.word	0x0d495441
 
 0800063c <_Z18SystemClock_Configv>:
@@ -510,7 +510,7 @@ void SystemClock_Config(void)
  8000646:	2248      	movs	r2, #72	@ 0x48
  8000648:	2100      	movs	r1, #0
  800064a:	4618      	mov	r0, r3
- 800064c:	f004 fda9 	bl	80051a2 <memset>
+ 800064c:	f004 fdc5 	bl	80051da <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  8000650:	1d3b      	adds	r3, r7, #4
  8000652:	2200      	movs	r2, #0
@@ -899,10 +899,10 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
  8000868:	887b      	ldrh	r3, [r7, #2]
  800086a:	4619      	mov	r1, r3
  800086c:	4804      	ldr	r0, [pc, #16]	@ (8000880 <HAL_UARTEx_RxEventCallback+0x24>)
- 800086e:	f004 fc7a 	bl	8005166 <_ZN3LTE15receiveCallbackEt>
+ 800086e:	f004 fc96 	bl	800519e <_ZN3LTE15receiveCallbackEt>
 	lte.setNewData();
  8000872:	4803      	ldr	r0, [pc, #12]	@ (8000880 <HAL_UARTEx_RxEventCallback+0x24>)
- 8000874:	f004 fc69 	bl	800514a <_ZN3LTE10setNewDataEv>
+ 8000874:	f004 fc85 	bl	8005182 <_ZN3LTE10setNewDataEv>
 }
  8000878:	bf00      	nop
  800087a:	3708      	adds	r7, #8
@@ -1056,7 +1056,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
  8000934:	2294      	movs	r2, #148	@ 0x94
  8000936:	2100      	movs	r1, #0
  8000938:	4618      	mov	r0, r3
- 800093a:	f004 fc32 	bl	80051a2 <memset>
+ 800093a:	f004 fc4e 	bl	80051da <memset>
   if(huart->Instance==UART4)
  800093e:	687b      	ldr	r3, [r7, #4]
  8000940:	681b      	ldr	r3, [r3, #0]
@@ -1767,10 +1767,10 @@ void SystemCoreClockUpdate(void)
  8000cc2:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000cc6:	4770      	bx	lr
  8000cc8:	40021000 	.word	0x40021000
- 8000ccc:	08005250 	.word	0x08005250
+ 8000ccc:	08005288 	.word	0x08005288
  8000cd0:	20000000 	.word	0x20000000
  8000cd4:	00f42400 	.word	0x00f42400
- 8000cd8:	08005238 	.word	0x08005238
+ 8000cd8:	08005270 	.word	0x08005270
 
 08000cdc <Reset_Handler>:
 
@@ -1841,7 +1841,7 @@ LoopFillZerobss:
 
 /* Call static constructors */
   bl __libc_init_array
- 8000d0a:	f004 fa53 	bl	80051b4 <__libc_init_array>
+ 8000d0a:	f004 fa6f 	bl	80051ec <__libc_init_array>
 /* Call the application's entry point.*/
 	bl	main
  8000d0e:	f7ff fc4f 	bl	80005b0 <main>
@@ -1854,7 +1854,7 @@ LoopForever:
   ldr   sp, =_estack    /* set stack pointer */
  8000d14:	20030000 	.word	0x20030000
 	ldr	r3, =_sidata
- 8000d18:	080052d0 	.word	0x080052d0
+ 8000d18:	08005308 	.word	0x08005308
 	ldr	r0, =_sdata
  8000d1c:	20000000 	.word	0x20000000
 	ldr	r3, =_edata
@@ -6906,7 +6906,7 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  8002938:	4770      	bx	lr
  800293a:	bf00      	nop
  800293c:	40021000 	.word	0x40021000
- 8002940:	08005250 	.word	0x08005250
+ 8002940:	08005288 	.word	0x08005288
  8002944:	00f42400 	.word	0x00f42400
 
 08002948 <HAL_RCC_GetHCLKFreq>:
@@ -6932,7 +6932,7 @@ uint32_t HAL_RCC_GetHCLKFreq(void)
  8002964:	4618      	mov	r0, r3
  8002966:	bd80      	pop	{r7, pc}
  8002968:	40021000 	.word	0x40021000
- 800296c:	08005238 	.word	0x08005238
+ 800296c:	08005270 	.word	0x08005270
 
 08002970 <HAL_RCC_GetPCLK1Freq>:
   * @note   Each time PCLK1 changes, this function must be called to update the
@@ -6958,7 +6958,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  800298c:	4618      	mov	r0, r3
  800298e:	bd80      	pop	{r7, pc}
  8002990:	40021000 	.word	0x40021000
- 8002994:	08005248 	.word	0x08005248
+ 8002994:	08005280 	.word	0x08005280
 
 08002998 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -6984,7 +6984,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  80029b4:	4618      	mov	r0, r3
  80029b6:	bd80      	pop	{r7, pc}
  80029b8:	40021000 	.word	0x40021000
- 80029bc:	08005248 	.word	0x08005248
+ 80029bc:	08005280 	.word	0x08005280
 
 080029c0 <RCC_SetFlashLatencyFromMSIRange>:
             voltage range.
@@ -7287,7 +7287,7 @@ static uint32_t RCC_GetSysClockFreqFromPLLSource(void)
  8002b52:	4770      	bx	lr
  8002b54:	40021000 	.word	0x40021000
  8002b58:	00f42400 	.word	0x00f42400
- 8002b5c:	08005250 	.word	0x08005250
+ 8002b5c:	08005288 	.word	0x08005288
 
 08002b60 <HAL_RCCEx_PeriphCLKConfig>:
   *         the RTC clock source: in this case the access to Backup domain is enabled.
@@ -11264,7 +11264,7 @@ HAL_StatusTypeDef UART_SetConfig(UART_HandleTypeDef *huart)
  800439a:	bf00      	nop
  800439c:	40008000 	.word	0x40008000
  80043a0:	00f42400 	.word	0x00f42400
- 80043a4:	08005290 	.word	0x08005290
+ 80043a4:	080052c8 	.word	0x080052c8
       }
       else
       {
@@ -13470,8 +13470,8 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
  8004fe4:	f85d 7b04 	ldr.w	r7, [sp], #4
  8004fe8:	4770      	bx	lr
  8004fea:	bf00      	nop
- 8004fec:	080052a8 	.word	0x080052a8
- 8004ff0:	080052b0 	.word	0x080052b0
+ 8004fec:	080052e0 	.word	0x080052e0
+ 8004ff0:	080052e8 	.word	0x080052e8
 
 08004ff4 <_ZN3LTEC1EP20__UART_HandleTypeDef>:
 #include "lte.hpp"
@@ -13589,223 +13589,253 @@ void LTE::receive(uint8_t* buffer)
  800509e:	af00      	add	r7, sp, #0
  80050a0:	6078      	str	r0, [r7, #4]
  80050a2:	6039      	str	r1, [r7, #0]
+	uint8_t bytes_copied = 0;
+ 80050a4:	2300      	movs	r3, #0
+ 80050a6:	73fb      	strb	r3, [r7, #15]
 	if(readIndex <= writeIndex)
- 80050a4:	687b      	ldr	r3, [r7, #4]
- 80050a6:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
- 80050aa:	b29a      	uxth	r2, r3
- 80050ac:	687b      	ldr	r3, [r7, #4]
- 80050ae:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
- 80050b2:	b29b      	uxth	r3, r3
- 80050b4:	429a      	cmp	r2, r3
- 80050b6:	bf94      	ite	ls
- 80050b8:	2301      	movls	r3, #1
- 80050ba:	2300      	movhi	r3, #0
- 80050bc:	b2db      	uxtb	r3, r3
- 80050be:	2b00      	cmp	r3, #0
- 80050c0:	d015      	beq.n	80050ee <_ZN3LTE7receiveEPh+0x54>
+ 80050a8:	687b      	ldr	r3, [r7, #4]
+ 80050aa:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
+ 80050ae:	b29a      	uxth	r2, r3
+ 80050b0:	687b      	ldr	r3, [r7, #4]
+ 80050b2:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
+ 80050b6:	b29b      	uxth	r3, r3
+ 80050b8:	429a      	cmp	r2, r3
+ 80050ba:	bf94      	ite	ls
+ 80050bc:	2301      	movls	r3, #1
+ 80050be:	2300      	movhi	r3, #0
+ 80050c0:	b2db      	uxtb	r3, r3
+ 80050c2:	2b00      	cmp	r3, #0
+ 80050c4:	d021      	beq.n	800510a <_ZN3LTE7receiveEPh+0x70>
 	{
 		memcpy(buffer, rxBuffer + readIndex, writeIndex - readIndex);
- 80050c2:	687b      	ldr	r3, [r7, #4]
- 80050c4:	3304      	adds	r3, #4
- 80050c6:	687a      	ldr	r2, [r7, #4]
- 80050c8:	f8b2 2fa4 	ldrh.w	r2, [r2, #4004]	@ 0xfa4
- 80050cc:	b292      	uxth	r2, r2
- 80050ce:	1899      	adds	r1, r3, r2
- 80050d0:	687b      	ldr	r3, [r7, #4]
- 80050d2:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
- 80050d6:	b29b      	uxth	r3, r3
- 80050d8:	461a      	mov	r2, r3
- 80050da:	687b      	ldr	r3, [r7, #4]
- 80050dc:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
- 80050e0:	b29b      	uxth	r3, r3
- 80050e2:	1ad3      	subs	r3, r2, r3
- 80050e4:	461a      	mov	r2, r3
- 80050e6:	6838      	ldr	r0, [r7, #0]
- 80050e8:	f000 f888 	bl	80051fc <memcpy>
- 80050ec:	e01e      	b.n	800512c <_ZN3LTE7receiveEPh+0x92>
+ 80050c6:	687b      	ldr	r3, [r7, #4]
+ 80050c8:	3304      	adds	r3, #4
+ 80050ca:	687a      	ldr	r2, [r7, #4]
+ 80050cc:	f8b2 2fa4 	ldrh.w	r2, [r2, #4004]	@ 0xfa4
+ 80050d0:	b292      	uxth	r2, r2
+ 80050d2:	1899      	adds	r1, r3, r2
+ 80050d4:	687b      	ldr	r3, [r7, #4]
+ 80050d6:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
+ 80050da:	b29b      	uxth	r3, r3
+ 80050dc:	461a      	mov	r2, r3
+ 80050de:	687b      	ldr	r3, [r7, #4]
+ 80050e0:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
+ 80050e4:	b29b      	uxth	r3, r3
+ 80050e6:	1ad3      	subs	r3, r2, r3
+ 80050e8:	461a      	mov	r2, r3
+ 80050ea:	6838      	ldr	r0, [r7, #0]
+ 80050ec:	f000 f8a2 	bl	8005234 <memcpy>
+		bytes_copied = writeIndex - readIndex;
+ 80050f0:	687b      	ldr	r3, [r7, #4]
+ 80050f2:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
+ 80050f6:	b29b      	uxth	r3, r3
+ 80050f8:	b2da      	uxtb	r2, r3
+ 80050fa:	687b      	ldr	r3, [r7, #4]
+ 80050fc:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
+ 8005100:	b29b      	uxth	r3, r3
+ 8005102:	b2db      	uxtb	r3, r3
+ 8005104:	1ad3      	subs	r3, r2, r3
+ 8005106:	73fb      	strb	r3, [r7, #15]
+ 8005108:	e027      	b.n	800515a <_ZN3LTE7receiveEPh+0xc0>
 	}
 	else
 	{
+
 		uint16_t tail_chunk = BUFFER_SIZE - readIndex;
- 80050ee:	687b      	ldr	r3, [r7, #4]
- 80050f0:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
- 80050f4:	b29b      	uxth	r3, r3
- 80050f6:	f5c3 637a 	rsb	r3, r3, #4000	@ 0xfa0
- 80050fa:	81fb      	strh	r3, [r7, #14]
+ 800510a:	687b      	ldr	r3, [r7, #4]
+ 800510c:	f8b3 3fa4 	ldrh.w	r3, [r3, #4004]	@ 0xfa4
+ 8005110:	b29b      	uxth	r3, r3
+ 8005112:	f5c3 637a 	rsb	r3, r3, #4000	@ 0xfa0
+ 8005116:	81bb      	strh	r3, [r7, #12]
 		memcpy(buffer, rxBuffer + readIndex, tail_chunk);
- 80050fc:	687b      	ldr	r3, [r7, #4]
- 80050fe:	3304      	adds	r3, #4
- 8005100:	687a      	ldr	r2, [r7, #4]
- 8005102:	f8b2 2fa4 	ldrh.w	r2, [r2, #4004]	@ 0xfa4
- 8005106:	b292      	uxth	r2, r2
- 8005108:	4413      	add	r3, r2
- 800510a:	89fa      	ldrh	r2, [r7, #14]
- 800510c:	4619      	mov	r1, r3
- 800510e:	6838      	ldr	r0, [r7, #0]
- 8005110:	f000 f874 	bl	80051fc <memcpy>
+ 8005118:	687b      	ldr	r3, [r7, #4]
+ 800511a:	3304      	adds	r3, #4
+ 800511c:	687a      	ldr	r2, [r7, #4]
+ 800511e:	f8b2 2fa4 	ldrh.w	r2, [r2, #4004]	@ 0xfa4
+ 8005122:	b292      	uxth	r2, r2
+ 8005124:	4413      	add	r3, r2
+ 8005126:	89ba      	ldrh	r2, [r7, #12]
+ 8005128:	4619      	mov	r1, r3
+ 800512a:	6838      	ldr	r0, [r7, #0]
+ 800512c:	f000 f882 	bl	8005234 <memcpy>
 		memcpy(buffer + tail_chunk, rxBuffer, writeIndex);
- 8005114:	89fb      	ldrh	r3, [r7, #14]
- 8005116:	683a      	ldr	r2, [r7, #0]
- 8005118:	18d0      	adds	r0, r2, r3
- 800511a:	687b      	ldr	r3, [r7, #4]
- 800511c:	1d19      	adds	r1, r3, #4
- 800511e:	687b      	ldr	r3, [r7, #4]
- 8005120:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
- 8005124:	b29b      	uxth	r3, r3
- 8005126:	461a      	mov	r2, r3
- 8005128:	f000 f868 	bl	80051fc <memcpy>
+ 8005130:	89bb      	ldrh	r3, [r7, #12]
+ 8005132:	683a      	ldr	r2, [r7, #0]
+ 8005134:	18d0      	adds	r0, r2, r3
+ 8005136:	687b      	ldr	r3, [r7, #4]
+ 8005138:	1d19      	adds	r1, r3, #4
+ 800513a:	687b      	ldr	r3, [r7, #4]
+ 800513c:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
+ 8005140:	b29b      	uxth	r3, r3
+ 8005142:	461a      	mov	r2, r3
+ 8005144:	f000 f876 	bl	8005234 <memcpy>
+		bytes_copied = tail_chunk + writeIndex;
+ 8005148:	89bb      	ldrh	r3, [r7, #12]
+ 800514a:	b2da      	uxtb	r2, r3
+ 800514c:	687b      	ldr	r3, [r7, #4]
+ 800514e:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
+ 8005152:	b29b      	uxth	r3, r3
+ 8005154:	b2db      	uxtb	r3, r3
+ 8005156:	4413      	add	r3, r2
+ 8005158:	73fb      	strb	r3, [r7, #15]
 	}
+	buffer[bytes_copied] = '\0';
+ 800515a:	7bfb      	ldrb	r3, [r7, #15]
+ 800515c:	683a      	ldr	r2, [r7, #0]
+ 800515e:	4413      	add	r3, r2
+ 8005160:	2200      	movs	r2, #0
+ 8005162:	701a      	strb	r2, [r3, #0]
 	newData = false;
- 800512c:	687b      	ldr	r3, [r7, #4]
- 800512e:	2200      	movs	r2, #0
- 8005130:	f883 2fa8 	strb.w	r2, [r3, #4008]	@ 0xfa8
+ 8005164:	687b      	ldr	r3, [r7, #4]
+ 8005166:	2200      	movs	r2, #0
+ 8005168:	f883 2fa8 	strb.w	r2, [r3, #4008]	@ 0xfa8
 	readIndex = writeIndex;
- 8005134:	687b      	ldr	r3, [r7, #4]
- 8005136:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
- 800513a:	b29a      	uxth	r2, r3
- 800513c:	687b      	ldr	r3, [r7, #4]
- 800513e:	f8a3 2fa4 	strh.w	r2, [r3, #4004]	@ 0xfa4
+ 800516c:	687b      	ldr	r3, [r7, #4]
+ 800516e:	f8b3 3fa6 	ldrh.w	r3, [r3, #4006]	@ 0xfa6
+ 8005172:	b29a      	uxth	r2, r3
+ 8005174:	687b      	ldr	r3, [r7, #4]
+ 8005176:	f8a3 2fa4 	strh.w	r2, [r3, #4004]	@ 0xfa4
 //			readIndex = 0;
 //		}
 //	}
 //	newData = false;
 //	return bufferSize;
 }
- 8005142:	bf00      	nop
- 8005144:	3710      	adds	r7, #16
- 8005146:	46bd      	mov	sp, r7
- 8005148:	bd80      	pop	{r7, pc}
+ 800517a:	bf00      	nop
+ 800517c:	3710      	adds	r7, #16
+ 800517e:	46bd      	mov	sp, r7
+ 8005180:	bd80      	pop	{r7, pc}
 
-0800514a <_ZN3LTE10setNewDataEv>:
+08005182 <_ZN3LTE10setNewDataEv>:
 
 void LTE::setNewData()
 {
- 800514a:	b480      	push	{r7}
- 800514c:	b083      	sub	sp, #12
- 800514e:	af00      	add	r7, sp, #0
- 8005150:	6078      	str	r0, [r7, #4]
+ 8005182:	b480      	push	{r7}
+ 8005184:	b083      	sub	sp, #12
+ 8005186:	af00      	add	r7, sp, #0
+ 8005188:	6078      	str	r0, [r7, #4]
 	newData = true;
- 8005152:	687b      	ldr	r3, [r7, #4]
- 8005154:	2201      	movs	r2, #1
- 8005156:	f883 2fa8 	strb.w	r2, [r3, #4008]	@ 0xfa8
+ 800518a:	687b      	ldr	r3, [r7, #4]
+ 800518c:	2201      	movs	r2, #1
+ 800518e:	f883 2fa8 	strb.w	r2, [r3, #4008]	@ 0xfa8
 }
- 800515a:	bf00      	nop
- 800515c:	370c      	adds	r7, #12
- 800515e:	46bd      	mov	sp, r7
- 8005160:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8005164:	4770      	bx	lr
+ 8005192:	bf00      	nop
+ 8005194:	370c      	adds	r7, #12
+ 8005196:	46bd      	mov	sp, r7
+ 8005198:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800519c:	4770      	bx	lr
 
-08005166 <_ZN3LTE15receiveCallbackEt>:
+0800519e <_ZN3LTE15receiveCallbackEt>:
 
 
 void LTE::receiveCallback(uint16_t write_index)
 {
- 8005166:	b480      	push	{r7}
- 8005168:	b083      	sub	sp, #12
- 800516a:	af00      	add	r7, sp, #0
- 800516c:	6078      	str	r0, [r7, #4]
- 800516e:	460b      	mov	r3, r1
- 8005170:	807b      	strh	r3, [r7, #2]
+ 800519e:	b480      	push	{r7}
+ 80051a0:	b083      	sub	sp, #12
+ 80051a2:	af00      	add	r7, sp, #0
+ 80051a4:	6078      	str	r0, [r7, #4]
+ 80051a6:	460b      	mov	r3, r1
+ 80051a8:	807b      	strh	r3, [r7, #2]
 	writeIndex = write_index;
- 8005172:	687b      	ldr	r3, [r7, #4]
- 8005174:	887a      	ldrh	r2, [r7, #2]
- 8005176:	f8a3 2fa6 	strh.w	r2, [r3, #4006]	@ 0xfa6
+ 80051aa:	687b      	ldr	r3, [r7, #4]
+ 80051ac:	887a      	ldrh	r2, [r7, #2]
+ 80051ae:	f8a3 2fa6 	strh.w	r2, [r3, #4006]	@ 0xfa6
 }
- 800517a:	bf00      	nop
- 800517c:	370c      	adds	r7, #12
- 800517e:	46bd      	mov	sp, r7
- 8005180:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8005184:	4770      	bx	lr
+ 80051b2:	bf00      	nop
+ 80051b4:	370c      	adds	r7, #12
+ 80051b6:	46bd      	mov	sp, r7
+ 80051b8:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80051bc:	4770      	bx	lr
 
-08005186 <_ZN3LTE10getNewDataEv>:
+080051be <_ZN3LTE10getNewDataEv>:
 {
 	return huart;
 }
 
 bool LTE::getNewData()
 {
- 8005186:	b480      	push	{r7}
- 8005188:	b083      	sub	sp, #12
- 800518a:	af00      	add	r7, sp, #0
- 800518c:	6078      	str	r0, [r7, #4]
+ 80051be:	b480      	push	{r7}
+ 80051c0:	b083      	sub	sp, #12
+ 80051c2:	af00      	add	r7, sp, #0
+ 80051c4:	6078      	str	r0, [r7, #4]
 	return newData;
- 800518e:	687b      	ldr	r3, [r7, #4]
- 8005190:	f893 3fa8 	ldrb.w	r3, [r3, #4008]	@ 0xfa8
- 8005194:	b2db      	uxtb	r3, r3
+ 80051c6:	687b      	ldr	r3, [r7, #4]
+ 80051c8:	f893 3fa8 	ldrb.w	r3, [r3, #4008]	@ 0xfa8
+ 80051cc:	b2db      	uxtb	r3, r3
 }
- 8005196:	4618      	mov	r0, r3
- 8005198:	370c      	adds	r7, #12
- 800519a:	46bd      	mov	sp, r7
- 800519c:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80051a0:	4770      	bx	lr
+ 80051ce:	4618      	mov	r0, r3
+ 80051d0:	370c      	adds	r7, #12
+ 80051d2:	46bd      	mov	sp, r7
+ 80051d4:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80051d8:	4770      	bx	lr
 
-080051a2 <memset>:
- 80051a2:	4402      	add	r2, r0
- 80051a4:	4603      	mov	r3, r0
- 80051a6:	4293      	cmp	r3, r2
- 80051a8:	d100      	bne.n	80051ac <memset+0xa>
- 80051aa:	4770      	bx	lr
- 80051ac:	f803 1b01 	strb.w	r1, [r3], #1
- 80051b0:	e7f9      	b.n	80051a6 <memset+0x4>
+080051da <memset>:
+ 80051da:	4402      	add	r2, r0
+ 80051dc:	4603      	mov	r3, r0
+ 80051de:	4293      	cmp	r3, r2
+ 80051e0:	d100      	bne.n	80051e4 <memset+0xa>
+ 80051e2:	4770      	bx	lr
+ 80051e4:	f803 1b01 	strb.w	r1, [r3], #1
+ 80051e8:	e7f9      	b.n	80051de <memset+0x4>
 	...
 
-080051b4 <__libc_init_array>:
- 80051b4:	b570      	push	{r4, r5, r6, lr}
- 80051b6:	4d0d      	ldr	r5, [pc, #52]	@ (80051ec <__libc_init_array+0x38>)
- 80051b8:	2600      	movs	r6, #0
- 80051ba:	4c0d      	ldr	r4, [pc, #52]	@ (80051f0 <__libc_init_array+0x3c>)
- 80051bc:	1b64      	subs	r4, r4, r5
- 80051be:	10a4      	asrs	r4, r4, #2
- 80051c0:	42a6      	cmp	r6, r4
- 80051c2:	d109      	bne.n	80051d8 <__libc_init_array+0x24>
- 80051c4:	4d0b      	ldr	r5, [pc, #44]	@ (80051f4 <__libc_init_array+0x40>)
- 80051c6:	2600      	movs	r6, #0
- 80051c8:	4c0b      	ldr	r4, [pc, #44]	@ (80051f8 <__libc_init_array+0x44>)
- 80051ca:	f000 f825 	bl	8005218 <_init>
- 80051ce:	1b64      	subs	r4, r4, r5
- 80051d0:	10a4      	asrs	r4, r4, #2
- 80051d2:	42a6      	cmp	r6, r4
- 80051d4:	d105      	bne.n	80051e2 <__libc_init_array+0x2e>
- 80051d6:	bd70      	pop	{r4, r5, r6, pc}
- 80051d8:	f855 3b04 	ldr.w	r3, [r5], #4
- 80051dc:	3601      	adds	r6, #1
- 80051de:	4798      	blx	r3
- 80051e0:	e7ee      	b.n	80051c0 <__libc_init_array+0xc>
- 80051e2:	f855 3b04 	ldr.w	r3, [r5], #4
- 80051e6:	3601      	adds	r6, #1
- 80051e8:	4798      	blx	r3
- 80051ea:	e7f2      	b.n	80051d2 <__libc_init_array+0x1e>
- 80051ec:	080052c0 	.word	0x080052c0
- 80051f0:	080052c0 	.word	0x080052c0
- 80051f4:	080052c0 	.word	0x080052c0
- 80051f8:	080052c8 	.word	0x080052c8
+080051ec <__libc_init_array>:
+ 80051ec:	b570      	push	{r4, r5, r6, lr}
+ 80051ee:	4d0d      	ldr	r5, [pc, #52]	@ (8005224 <__libc_init_array+0x38>)
+ 80051f0:	2600      	movs	r6, #0
+ 80051f2:	4c0d      	ldr	r4, [pc, #52]	@ (8005228 <__libc_init_array+0x3c>)
+ 80051f4:	1b64      	subs	r4, r4, r5
+ 80051f6:	10a4      	asrs	r4, r4, #2
+ 80051f8:	42a6      	cmp	r6, r4
+ 80051fa:	d109      	bne.n	8005210 <__libc_init_array+0x24>
+ 80051fc:	4d0b      	ldr	r5, [pc, #44]	@ (800522c <__libc_init_array+0x40>)
+ 80051fe:	2600      	movs	r6, #0
+ 8005200:	4c0b      	ldr	r4, [pc, #44]	@ (8005230 <__libc_init_array+0x44>)
+ 8005202:	f000 f825 	bl	8005250 <_init>
+ 8005206:	1b64      	subs	r4, r4, r5
+ 8005208:	10a4      	asrs	r4, r4, #2
+ 800520a:	42a6      	cmp	r6, r4
+ 800520c:	d105      	bne.n	800521a <__libc_init_array+0x2e>
+ 800520e:	bd70      	pop	{r4, r5, r6, pc}
+ 8005210:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8005214:	3601      	adds	r6, #1
+ 8005216:	4798      	blx	r3
+ 8005218:	e7ee      	b.n	80051f8 <__libc_init_array+0xc>
+ 800521a:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800521e:	3601      	adds	r6, #1
+ 8005220:	4798      	blx	r3
+ 8005222:	e7f2      	b.n	800520a <__libc_init_array+0x1e>
+ 8005224:	080052f8 	.word	0x080052f8
+ 8005228:	080052f8 	.word	0x080052f8
+ 800522c:	080052f8 	.word	0x080052f8
+ 8005230:	08005300 	.word	0x08005300
 
-080051fc <memcpy>:
- 80051fc:	440a      	add	r2, r1
- 80051fe:	1e43      	subs	r3, r0, #1
- 8005200:	4291      	cmp	r1, r2
- 8005202:	d100      	bne.n	8005206 <memcpy+0xa>
- 8005204:	4770      	bx	lr
- 8005206:	b510      	push	{r4, lr}
- 8005208:	f811 4b01 	ldrb.w	r4, [r1], #1
- 800520c:	4291      	cmp	r1, r2
- 800520e:	f803 4f01 	strb.w	r4, [r3, #1]!
- 8005212:	d1f9      	bne.n	8005208 <memcpy+0xc>
- 8005214:	bd10      	pop	{r4, pc}
+08005234 <memcpy>:
+ 8005234:	440a      	add	r2, r1
+ 8005236:	1e43      	subs	r3, r0, #1
+ 8005238:	4291      	cmp	r1, r2
+ 800523a:	d100      	bne.n	800523e <memcpy+0xa>
+ 800523c:	4770      	bx	lr
+ 800523e:	b510      	push	{r4, lr}
+ 8005240:	f811 4b01 	ldrb.w	r4, [r1], #1
+ 8005244:	4291      	cmp	r1, r2
+ 8005246:	f803 4f01 	strb.w	r4, [r3, #1]!
+ 800524a:	d1f9      	bne.n	8005240 <memcpy+0xc>
+ 800524c:	bd10      	pop	{r4, pc}
 	...
 
-08005218 <_init>:
- 8005218:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800521a:	bf00      	nop
- 800521c:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800521e:	bc08      	pop	{r3}
- 8005220:	469e      	mov	lr, r3
- 8005222:	4770      	bx	lr
+08005250 <_init>:
+ 8005250:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8005252:	bf00      	nop
+ 8005254:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8005256:	bc08      	pop	{r3}
+ 8005258:	469e      	mov	lr, r3
+ 800525a:	4770      	bx	lr
 
-08005224 <_fini>:
- 8005224:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8005226:	bf00      	nop
- 8005228:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800522a:	bc08      	pop	{r3}
- 800522c:	469e      	mov	lr, r3
- 800522e:	4770      	bx	lr
+0800525c <_fini>:
+ 800525c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800525e:	bf00      	nop
+ 8005260:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8005262:	bc08      	pop	{r3}
+ 8005264:	469e      	mov	lr, r3
+ 8005266:	4770      	bx	lr
